@@ -204,7 +204,6 @@ public class AnswersManager : MonoBehaviour
         else
         {
             topText.text = "Muito bem! Você conseguiu!";
-            hierarchizyButton.onClick.AddListener(SetupHierarchyFunctions);
             hierarchizyButton.gameObject.SetActive(true);
         }
     }

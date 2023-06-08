@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "864208023549",
+    "firebase_url": "https://lifenergy-527a8-default-rtdb.firebaseio.com",
+    "project_id": "lifenergy-527a8",
+    "storage_bucket": "lifenergy-527a8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864208023549:android:c3be98e0cfa35c348bb394",
+        "android_client_info": {
+          "package_name": "com.Play2Make.LifenergYVR"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864208023549-cef497v1i2dlbrv5letkqnfuckrfpiha.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsoGbT92Ampblrn0Rt5HMU0GAC4yax9i8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864208023549-cef497v1i2dlbrv5letkqnfuckrfpiha.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
