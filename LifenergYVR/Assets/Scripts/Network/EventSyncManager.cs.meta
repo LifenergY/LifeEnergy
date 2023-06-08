@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4808b54836c275d499e414846d42249e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Runner: {instanceID: 0}
+  - Object: {instanceID: 0}
+  - eventSyncChannel: {fileID: 11400000, guid: aad360ba7423c1444b243c0ec80e36b5, type: 2}
+  executionOrder: 600
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
