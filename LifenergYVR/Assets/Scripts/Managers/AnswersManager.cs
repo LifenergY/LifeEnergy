@@ -10,6 +10,8 @@ using System.Collections.Generic;
 /// </summary>
 public class AnswersManager : MonoBehaviour
 {
+    [SerializeField] private DatabaseManager databaseManager;
+
     [Header("Texts")]
     [SerializeField] private TMP_Text topText;
     [SerializeField] private TMP_Text subText;
@@ -77,11 +79,17 @@ public class AnswersManager : MonoBehaviour
         displayAnswersButton.onClick.AddListener(DisplayAnswers);
         retryButton.onClick.AddListener(RetryAnswer);
         hierarchizyButton.onClick.AddListener(SetupHierarchyFunctions);
-        //     concluirButton.onClick.AddListener(databaseManager.CreateUser);
-        //  confirmButton.onClick.AddListener(SaveAnswer);
+        concluirButton.onClick.AddListener(SendData);
+        confirmButton.onClick.AddListener(SaveAnswer);
 
         VoiceExperienceHandler.OnCheckVoiceOutput += CheckVoiceOutput;
         VoiceExperienceHandler.OnVoiceOutputError += VoiceOutputError;
+    }
+    private void SendData()
+    {
+        print("DataBase");
+        databaseManager.CreateUser();
+        // DG Close Computer Screen
     }
 
     private void SettingAnswers()
@@ -99,6 +107,7 @@ public class AnswersManager : MonoBehaviour
 
     private void StartVoiceExperience()
     {
+        print("StartVoiceExperience");
         topText.text = "";
         subText.text = "";
 
@@ -113,6 +122,7 @@ public class AnswersManager : MonoBehaviour
 
     private void CheckVoiceOutput(string voiceOutput)
     {
+        print("CheckVoiceOutput");
         loadingTextAnimation.Kill();
 
         topText.text = isWhatYouMeantText;
@@ -142,6 +152,7 @@ public class AnswersManager : MonoBehaviour
 
     private void RetryAnswer()
     {
+        print("RetryAnswer");
         topText.text = "";
         subText.text = "";
 
@@ -154,6 +165,7 @@ public class AnswersManager : MonoBehaviour
 
     private void VoiceOutputError()
     {
+        print("VoiceOutputError");
         loadingTextAnimation.Kill();
 
         topText.text = voiceOutputErrorText;
@@ -165,6 +177,7 @@ public class AnswersManager : MonoBehaviour
 
     void JustifyEntry()
     {
+        print("JustifyEntry");
         topText.text = justifyAnswerText;
         subText.text = "";
         Justifying = true;
@@ -175,6 +188,7 @@ public class AnswersManager : MonoBehaviour
 
     public void DisplayAnswers()
     {
+        print("DisplayAnswers");
         displayAnswersButton.gameObject.SetActive(false);
         confirmButton.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
@@ -197,6 +211,7 @@ public class AnswersManager : MonoBehaviour
 
     public void SaveAnswer()
     {
+        print("SaveAnswer");
         retryButton.gameObject.SetActive(false);
 
         if (answersList.Count != 3)
@@ -215,12 +230,13 @@ public class AnswersManager : MonoBehaviour
             currentAnswerIndex = 0;
             //      uiSpawnManager.SetActive(true);
             JustifyEntry();
-            SetupHierarchyFunctions();
+         //   SetupHierarchyFunctions();
         }
     }
 
     public void FillJustifyText()
     {
+        print("FillJustifyText");
         // obtém a resposta correspondente ao índice atual
         Answer currentAnswer = answersList[currentAnswerIndex];
 
@@ -248,10 +264,11 @@ public class AnswersManager : MonoBehaviour
 
     void SetupHierarchyFunctions()
     {
+        print("SetupHierarchyFunctions");
         confirmButton.gameObject.SetActive(false);
         hierarchizyButton.gameObject.SetActive(false);
-        justifyButton.gameObject.SetActive(false);
-
+        displayAnswersButton.gameObject.SetActive(false);
+        concluirButton.gameObject.SetActive(true);
         topText.text = "";
         subText.text = "";
 
