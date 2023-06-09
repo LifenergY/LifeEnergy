@@ -50,7 +50,13 @@ public class AnswersManager : NetworkBehaviour
     [SerializeField] private Transform answerPanel;
     [SerializeField] private Transform dropdownPanel;
 
-    [Networked] private int currentAnswerIndex { get; set; }
+    [Networked(OnChanged = nameof(OnCurrentAnswerIndexChanged))]
+    public int currentAnswerIndex { get; set; }
+
+    private static void OnCurrentAnswerIndexChanged(Changed<AnswersManager> changed)
+    {
+        changed.Behaviour.currentAnswerIndex = changed.NewValue;
+    }
     [Networked] private NetworkBool Justifying { get; set; }
 
     private const string hierarquizarText = "Hierarquizar";
