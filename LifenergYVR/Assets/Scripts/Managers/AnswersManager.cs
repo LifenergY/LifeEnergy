@@ -72,6 +72,8 @@ public class AnswersManager : NetworkBehaviour
 
     private void LoadingTextAnimation()
     {
+        if (!Object.HasStateAuthority) return;
+
         loadingTextAnimation = DOTween.Sequence();
         loadingTextAnimation.AppendCallback(() => subText.text = "Listening.");
         loadingTextAnimation.AppendInterval(period);
