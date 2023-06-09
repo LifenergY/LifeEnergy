@@ -93,12 +93,16 @@ public class VoiceExperienceHandler : MonoBehaviour
     [Rpc(RpcSources.StateAuthority, RpcTargets.All, InvokeLocal = true)]
     private void RPC_VoiceOutPut(bool successful, string output)
     {
+
         if (successful)
+        
         {
+            print("RPC-------------------True");
             OnCheckVoiceOutput?.Invoke(output);
         }
         else
         {
+            print("RPC-------------------fa=lse");
             OnVoiceOutputError?.Invoke();
         }
     }
