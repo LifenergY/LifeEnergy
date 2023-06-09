@@ -87,8 +87,8 @@ public class AnswersManager : NetworkBehaviour
     {
         if (Object.HasStateAuthority)
         {
-            subText.text = winMegasenaText;
-            topText.text = answerRankJustifyText;
+            NetworkedTopText = winMegasenaText;
+            NetworkedSubText = answerRankJustifyText;
         }
 
         startButton.onClick.AddListener(SettingAnswers);
@@ -157,7 +157,7 @@ public class AnswersManager : NetworkBehaviour
         startButton.gameObject.SetActive(false);
         answerButton.gameObject.SetActive(false);
 
-        confirmButton.onClick.RemoveAllListeners();
+      //  confirmButton.onClick.RemoveAllListeners();
 
         confirmButton.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
