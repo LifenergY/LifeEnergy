@@ -163,7 +163,6 @@ public class AnswersManager : NetworkBehaviour
         else
         {
             confirmButton.onClick.AddListener(SaveAnswer);
-            print(answersList.Count + "   " + currentAnswerIndex);
             if (answersList.Count < 0) retryButton.gameObject.SetActive(false);
         }
     }
@@ -197,8 +196,12 @@ public class AnswersManager : NetworkBehaviour
     {
         print("JustifyEntry");
 
-        if (Object.HasStateAuthority) NetworkedTopText = justifyAnswerText;
-        if (Object.HasStateAuthority) NetworkedSubText = "";
+        if (Object.HasStateAuthority)
+        {
+            NetworkedTopText = justifyAnswerText;
+            NetworkedSubText = "";
+        }
+
         Justifying = true;
 
         //  uiSpawnManager.SetActive(false);
@@ -243,10 +246,13 @@ public class AnswersManager : NetworkBehaviour
         if (answersList.Count == 3)
         {
             answerButton.gameObject.SetActive(false);
-            if (Object.HasStateAuthority) NetworkedTopText = "";
-            if (Object.HasStateAuthority) NetworkedSubText = "";
+            if (Object.HasStateAuthority)
+            {
+                NetworkedTopText = "";
+                NetworkedSubText = "";
 
-            if (Object.HasStateAuthority) currentAnswerIndex = 0;
+                currentAnswerIndex = 0;
+            }
             //      uiSpawnManager.SetActive(true);
             JustifyEntry();
             //   SetupHierarchyFunctions();
@@ -263,7 +269,7 @@ public class AnswersManager : NetworkBehaviour
         currentAnswer.justifyText = topText.text;
 
         // incrementa o índice para exibir a próxima resposta na próxima interação
-        if (Object.HasStateAuthority) currentAnswerIndex++;
+        currentAnswerIndex++;
 
         // exibe o answerText da próxima resposta (ou encerra o jogo)
         DisplayAnswers();
