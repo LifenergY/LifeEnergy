@@ -172,7 +172,6 @@ public class AnswersManager : NetworkBehaviour
         }
         else
         {
-
             confirmButton.gameObject.SetActive(true);
             if (answersList.Count < 0) retryButton.gameObject.SetActive(false);
         }
@@ -223,6 +222,7 @@ public class AnswersManager : NetworkBehaviour
     {
         print("DisplayAnswers");
         displayAnswersButton.gameObject.SetActive(false);
+        fillJustifyButton.gameObject.SetActive(false);
         confirmButton.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
 
@@ -303,6 +303,7 @@ public class AnswersManager : NetworkBehaviour
         print("SetupHierarchyFunctions");
 
         confirmButton.gameObject.SetActive(false);
+        fillJustifyButton.gameObject.SetActive(false);
         hierarchizyButton.gameObject.SetActive(false);
         displayAnswersButton.gameObject.SetActive(false);
         concluirButton.gameObject.SetActive(true);
