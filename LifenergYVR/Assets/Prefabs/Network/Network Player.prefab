@@ -2969,6 +2969,7 @@ GameObject:
   - component: {fileID: 7972615458267565829}
   - component: {fileID: 3628520589350634198}
   - component: {fileID: 6698769683139631144}
+  - component: {fileID: 6781851757902081219}
   m_Layer: 0
   m_Name: Network Player
   m_TagString: Untagged
@@ -3022,6 +3023,7 @@ MonoBehaviour:
   - {fileID: 5838665040130260645}
   - {fileID: 1765890055166300035}
   - {fileID: 6698769683139631144}
+  - {fileID: 6781851757902081219}
   SimulationBehaviours: []
 --- !u!114 &5838665040130260645
 MonoBehaviour:
@@ -3189,3 +3191,19 @@ MonoBehaviour:
   handMatTransparent: {fileID: 2100000, guid: 1294399a906fe33438d037129b293ecd, type: 2}
   hidePsychologistActionRef: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+--- !u!114 &6781851757902081219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7509948898922148511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f9da930937e084ab34f8304ba198f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
+  handSkinMesh:
+  - {fileID: 4269955214055818019}
+  - {fileID: 7509948898624171288}

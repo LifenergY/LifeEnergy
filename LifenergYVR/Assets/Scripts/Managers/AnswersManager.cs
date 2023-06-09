@@ -5,8 +5,6 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using static UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation.XRDeviceSimulator;
-using UnityEngine.Networking.Types;
 
 public class AnswersManager : NetworkBehaviour
 {
@@ -52,7 +50,7 @@ public class AnswersManager : NetworkBehaviour
     [SerializeField] private Transform answerPanel;
     [SerializeField] private Transform dropdownPanel;
 
-    [Networked] private int currentAnswerIndex { get; set; }
+    private int currentAnswerIndex;
     [Networked] private NetworkBool Justifying { get; set; }
 
     private const string hierarquizarText = "Hierarquizar";
@@ -115,7 +113,7 @@ public class AnswersManager : NetworkBehaviour
     private void SendData()
     {
         print("DataBase");
-        databaseManager.CreateUser();
+        if (Object.HasStateAuthority) databaseManager.CreateUser();
         DOVirtual.DelayedCall(1, ActivateLastUI);
         AnswerUI.GetComponent<AnswersPanelAnimations>().DisableUIAnimation();
     }
@@ -262,8 +260,8 @@ public class AnswersManager : NetworkBehaviour
                 NetworkedTopText = "";
                 NetworkedSubText = "";
 
-                currentAnswerIndex = 0;
             }
+            currentAnswerIndex = 0;
             //      uiSpawnManager.SetActive(true);
             JustifyEntry();
             //   SetupHierarchyFunctions();
