@@ -50,13 +50,7 @@ public class AnswersManager : NetworkBehaviour
     [SerializeField] private Transform answerPanel;
     [SerializeField] private Transform dropdownPanel;
 
-    [Networked(OnChanged = nameof(OnCurrentAnswerIndexChanged))]
-    public int currentAnswerIndex { get; set; }
-
-    private static void OnCurrentAnswerIndexChanged(Changed<AnswersManager> changed)
-    {
-        changed.Behaviour.currentAnswerIndex = changed.NewValue;
-    }
+    [Networked] private int currentAnswerIndex { get; set; }
     [Networked] private NetworkBool Justifying { get; set; }
 
     private const string hierarquizarText = "Hierarquizar";
@@ -238,7 +232,7 @@ public class AnswersManager : NetworkBehaviour
 
     public void SaveAnswer()
     {
-        print("SaveAnswer");
+        print("SaveAnswer  AnswerListCount: " + answersList.Count);
         retryButton.gameObject.SetActive(false);
 
         if (answersList.Count != 3)
@@ -276,7 +270,7 @@ public class AnswersManager : NetworkBehaviour
 
         // incrementa o índice para exibir a próxima resposta na próxima interação
         currentAnswerIndex++;
-
+        print("CurrentAnswerIndex : ------" + currentAnswerIndex);
         // exibe o answerText da próxima resposta (ou encerra o jogo)
         DisplayAnswers();
     }
