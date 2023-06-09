@@ -1559,7 +1559,7 @@ Transform:
   - {fileID: 586775997}
   - {fileID: 677234292}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &185262212
 MonoBehaviour:
@@ -34227,6 +34227,7 @@ GameObject:
   - component: {fileID: 1703374796}
   - component: {fileID: 1703374795}
   - component: {fileID: 1703374797}
+  - component: {fileID: 1703374798}
   m_Layer: 0
   m_Name: Oculus Voice
   m_TagString: Untagged
@@ -34350,7 +34351,7 @@ Transform:
   m_Children:
   - {fileID: 1126055360}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1703374797
 MonoBehaviour:
@@ -34364,10 +34365,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45db243ea5747345ae60d3244370366, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   freshStateText: Try pressing the Activate button and saying "Make the cube red"
   voiceOutput: 
   showJson: 0
   appVoiceExperience: {fileID: 1703374795}
+--- !u!114 &1703374798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703374794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: 63e26301620041d587704d6154f2749e
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1703374797}
+  SimulationBehaviours: []
 --- !u!1001 &1708018808
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42933,7 +42959,7 @@ Transform:
   m_Children:
   - {fileID: 1658668514}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1983922525
 MonoBehaviour:
@@ -58808,7 +58834,7 @@ Transform:
   - {fileID: 1107463514}
   - {fileID: 362781135}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -88.695, y: 0, z: 180}
 --- !u!33 &4082197779697132449
 MeshFilter:

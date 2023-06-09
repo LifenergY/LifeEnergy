@@ -5,7 +5,7 @@ using Oculus.Voice;
 using Meta.WitAi.Json;
 using Fusion;
 
-public class VoiceExperienceHandler : MonoBehaviour
+public class VoiceExperienceHandler : NetworkBehaviour
 {
     [Header("Default States"), Multiline]
     [SerializeField] private string freshStateText = "Try pressing the Activate button and saying \"Make the cube red\"";
