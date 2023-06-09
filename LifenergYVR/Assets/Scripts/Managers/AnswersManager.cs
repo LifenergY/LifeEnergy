@@ -114,11 +114,11 @@ public class AnswersManager : NetworkBehaviour
     {
         print("DataBase");
         if (Object.HasStateAuthority) databaseManager.CreateUser();
-        DOVirtual.DelayedCall(1, ActivateLastUI);
+     //   DOVirtual.DelayedCall(1, ActivateLastUI);
         AnswerUI.GetComponent<AnswersPanelAnimations>().DisableUIAnimation();
     }
 
-    private void ActivateLastUI() => finalUI.SetActive(true);
+   // private void ActivateLastUI() => finalUI.SetActive(true);
 
     private void SettingAnswers()
     {

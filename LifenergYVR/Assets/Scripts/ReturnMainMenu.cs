@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ReturnMainMenu : MonoBehaviour
 {
     [SerializeField] private FadeEffectChannel effectChannel;
+    [SerializeField] private AnswersPanelAnimations answersPanelAnimations;
 
     [SerializeField] private Button returnButton;
 
@@ -16,6 +17,7 @@ public class ReturnMainMenu : MonoBehaviour
     private void ReturnToMainMenu()
     {
         effectChannel.FadeIn();
+        answersPanelAnimations.DisableUIAnimation();
         DOVirtual.DelayedCall(1.75f, LoadScene);
     }
 
