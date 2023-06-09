@@ -7,6 +7,7 @@ public class PsychologistActions : NetworkBehaviour
 {
     [Header("Renderers")]
     [SerializeField] private SkinnedMeshRenderer[] renderers;
+    [SerializeField] private CanvasGroup nameCanvasGroup;
 
     [Header("Materials")]
     [SerializeField] private Material handMatOpaque;
@@ -65,10 +66,12 @@ public class PsychologistActions : NetworkBehaviour
             {
                 render.material = handMatTransparent;
                 render.material.DOFade(0, 1);
+                nameCanvasGroup.DOFade(0, 1);
             }
             else
             {
                 render.material.DOFade(1, 1).OnComplete(() => render.material = handMatOpaque);
+                nameCanvasGroup.DOFade(1, 1);
             }
         }
     }

@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 1811252598880747289}
   - component: {fileID: 648630100541786597}
   - component: {fileID: 4801799348359444138}
+  - component: {fileID: 4364189746366223221}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -199,6 +200,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!225 &4364189746366223221
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2606424983233767984}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &4075078515855640536
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,6 +1850,8 @@ MonoBehaviour:
     type: 2}
   modeText: {fileID: 3408162109376790845}
   nameText: {fileID: 4912748375129665031}
+  _NetworkedName: 
+  _NetworkedMode: 
 --- !u!1 &7509948898430964338
 GameObject:
   m_ObjectHideFlags: 0
@@ -3169,6 +3184,7 @@ MonoBehaviour:
   renderers:
   - {fileID: 4269955214055818019}
   - {fileID: 7509948898624171288}
+  nameCanvasGroup: {fileID: 4364189746366223221}
   handMatOpaque: {fileID: 2100000, guid: 8cbb1ff429d6a674581ef94732f80e19, type: 2}
   handMatTransparent: {fileID: 2100000, guid: 1294399a906fe33438d037129b293ecd, type: 2}
   hidePsychologistActionRef: {fileID: 7904272356298805229, guid: c348712bda248c246b8c49b3db54643f,
