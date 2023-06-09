@@ -31968,6 +31968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1431522039}
   - component: {fileID: 1431522038}
+  - component: {fileID: 1431522040}
   m_Layer: 0
   m_Name: Answer Manager
   m_TagString: Untagged
@@ -31987,11 +31988,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2b3b861c647d94e8f8c8987f416013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interpolationDataSource: 0
   databaseManager: {fileID: 167955212}
   AnswerUI: {fileID: 1753716302}
   finalUI: {fileID: 757005717}
+  spawnManagerUI: {fileID: 794883476}
   topText: {fileID: 1721295570}
   subText: {fileID: 1583778227}
+  _NetworkedTopText: 
+  _NetworkedSubText: 
   startButton: {fileID: 6098352724381375395}
   answerButton: {fileID: 1745031977}
   confirmButton: {fileID: 449029208}
@@ -32023,6 +32028,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1431522040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1431522037}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1552182283, guid: e725a070cec140c4caffb81624c8c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectInterest: 1
+  DefaultInterestGroups: []
+  DestroyWhenStateAuthorityLeaves: 0
+  AllowStateAuthorityOverride: 1
+  AoiPositionSource: {fileID: 0}
+  Flags: 2561
+  NetworkGuid:
+    RawGuidValue: a1a070fc48de4a0f8019ae5798f9696b
+  NestedObjects: []
+  NetworkedBehaviours:
+  - {fileID: 1431522038}
+  SimulationBehaviours: []
 --- !u!1001 &1458034819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59008,7 +59037,7 @@ PrefabInstance:
     - target: {fileID: 7116018420550880656, guid: f79b115640e5df64aaa4b6e54fa24d6c,
         type: 3}
       propertyPath: roomName
-      value: Card11
+      value: Card1
       objectReference: {fileID: 0}
     - target: {fileID: 7116018420550880659, guid: f79b115640e5df64aaa4b6e54fa24d6c,
         type: 3}

@@ -6,10 +6,9 @@ using DG.Tweening;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using static UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation.XRDeviceSimulator;
-/// <summary>
-/// wrong answer index timing reset
-/// </summary>
-public class AnswersManager : MonoBehaviour
+using UnityEngine.Networking.Types;
+
+public class AnswersManager : NetworkBehaviour
 {
     [SerializeField] private DatabaseManager databaseManager;
     [SerializeField] private GameObject AnswerUI;
@@ -19,6 +18,16 @@ public class AnswersManager : MonoBehaviour
     [Header("Texts")]
     [SerializeField] private TMP_Text topText;
     [SerializeField] private TMP_Text subText;
+
+    [Networked(OnChanged = nameof(OnTopTextChanged))]
+    public string NetworkedTopText { get; set; }
+
+    [Networked(OnChanged = nameof(OnSubTextChanged))]
+    public string NetworkedSubText { get; set; }
+
+    private static void OnTopTextChanged(Changed<AnswersManager> changed) => changed.Behaviour.topText.text = changed.Behaviour.NetworkedTopText;
+
+    private static void OnSubTextChanged(Changed<AnswersManager> changed) => changed.Behaviour.subText.text = changed.Behaviour.NetworkedSubText;
 
     [Header("Buttons")]
     [SerializeField] private Button startButton;
@@ -103,8 +112,8 @@ public class AnswersManager : MonoBehaviour
     {
         print("Setting Answers");
 
-        topText.text = answersList.Count == 0 ? answerQuestionsText : answerNextQuestionsText;
-        subText.text = pressButtonToAnswerText;
+        if (Object.HasStateAuthority) NetworkedTopText = answersList.Count == 0 ? answerQuestionsText : answerNextQuestionsText;
+        if (Object.HasStateAuthority) NetworkedSubText = pressButtonToAnswerText;
 
         startButton.gameObject.SetActive(false);
         confirmButton.gameObject.SetActive(false);
@@ -115,8 +124,8 @@ public class AnswersManager : MonoBehaviour
     private void StartVoiceExperience()
     {
         print("StartVoiceExperience");
-        topText.text = "";
-        subText.text = "";
+        if (Object.HasStateAuthority) NetworkedTopText = "";
+        if (Object.HasStateAuthority) NetworkedSubText = "";
 
         LoadingTextAnimation();
 
@@ -160,8 +169,8 @@ public class AnswersManager : MonoBehaviour
     private void RetryAnswer()
     {
         print("RetryAnswer");
-        topText.text = "";
-        subText.text = "";
+        if (Object.HasStateAuthority) NetworkedTopText = "";
+        if (Object.HasStateAuthority) NetworkedSubText = "";
 
         confirmButton.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
@@ -175,8 +184,8 @@ public class AnswersManager : MonoBehaviour
         print("VoiceOutputError");
         loadingTextAnimation.Kill();
 
-        topText.text = voiceOutputErrorText;
-        subText.text = "";
+        if (Object.HasStateAuthority) NetworkedTopText = voiceOutputErrorText;
+        if (Object.HasStateAuthority) NetworkedSubText = "";
 
         if (Justifying) displayAnswersButton.gameObject.SetActive(true);
         else startButton.gameObject.SetActive(true);
@@ -185,8 +194,9 @@ public class AnswersManager : MonoBehaviour
     void JustifyEntry()
     {
         print("JustifyEntry");
-        topText.text = justifyAnswerText;
-        subText.text = "";
+
+        if (Object.HasStateAuthority) NetworkedTopText = justifyAnswerText;
+        if (Object.HasStateAuthority) NetworkedSubText = "";
         Justifying = true;
 
         //  uiSpawnManager.SetActive(false);
@@ -200,7 +210,7 @@ public class AnswersManager : MonoBehaviour
         confirmButton.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
 
-        subText.text = "";
+        if (Object.HasStateAuthority) NetworkedSubText = "";
 
         if (currentAnswerIndex < answersList.Count)
         {
@@ -231,12 +241,13 @@ public class AnswersManager : MonoBehaviour
         if (answersList.Count == 3)
         {
             answerButton.gameObject.SetActive(false);
-            topText.text = "";
-            subText.text = "";
+            if (Object.HasStateAuthority) NetworkedTopText = "";
+            if (Object.HasStateAuthority) NetworkedSubText = "";
+
             currentAnswerIndex = 0;
             //      uiSpawnManager.SetActive(true);
             JustifyEntry();
-         //   SetupHierarchyFunctions();
+            //   SetupHierarchyFunctions();
         }
     }
 
@@ -271,12 +282,14 @@ public class AnswersManager : MonoBehaviour
     void SetupHierarchyFunctions()
     {
         print("SetupHierarchyFunctions");
+
         confirmButton.gameObject.SetActive(false);
         hierarchizyButton.gameObject.SetActive(false);
         displayAnswersButton.gameObject.SetActive(false);
         concluirButton.gameObject.SetActive(true);
-        topText.text = "";
-        subText.text = "";
+
+        if (Object.HasStateAuthority) NetworkedTopText = "";
+        if (Object.HasStateAuthority) NetworkedSubText = "";
 
         int index = 150;
 

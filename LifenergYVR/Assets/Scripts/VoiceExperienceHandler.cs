@@ -3,6 +3,7 @@ using Meta.WitAi;
 using UnityEngine;
 using Oculus.Voice;
 using Meta.WitAi.Json;
+using Fusion;
 
 public class VoiceExperienceHandler : MonoBehaviour
 {
@@ -76,17 +77,30 @@ public class VoiceExperienceHandler : MonoBehaviour
                 print("Voice Yes");
                 voiceOutput = "Jogador: " + response["text"];
 
-                OnCheckVoiceOutput?.Invoke(voiceOutput);
+                RPC_VoiceOutPut(true, voiceOutput);
             }
             else
             {
                 print("Voice No");
                 // voiceOutput = freshStateText;
-                OnVoiceOutputError?.Invoke();
+                RPC_VoiceOutPut(false, "");
             }
         }
 
         OnRequestComplete();
+    }
+
+    [Rpc(RpcSources.StateAuthority, RpcTargets.All, InvokeLocal = true)]
+    private void RPC_VoiceOutPut(bool successful, string output)
+    {
+        if (successful)
+        {
+            OnCheckVoiceOutput?.Invoke(output);
+        }
+        else
+        {
+            OnVoiceOutputError?.Invoke();
+        }
     }
 
     private void OnRequestError(string error, string message)
