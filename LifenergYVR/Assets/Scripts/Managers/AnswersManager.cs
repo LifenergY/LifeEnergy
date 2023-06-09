@@ -83,10 +83,13 @@ public class AnswersManager : NetworkBehaviour
         loadingTextAnimation.SetLoops(-1, LoopType.Restart);
     }
 
-    private void Awake()
+    public override void Spawned()
     {
-        subText.text = winMegasenaText;
-        topText.text = answerRankJustifyText;
+        if (Object.HasStateAuthority)
+        {
+            subText.text = winMegasenaText;
+            topText.text = answerRankJustifyText;
+        }
 
         startButton.onClick.AddListener(SettingAnswers);
         answerButton.onClick.AddListener(StartVoiceExperience);
@@ -99,6 +102,12 @@ public class AnswersManager : NetworkBehaviour
         VoiceExperienceHandler.OnCheckVoiceOutput += CheckVoiceOutput;
         VoiceExperienceHandler.OnVoiceOutputError += VoiceOutputError;
     }
+
+    //public override void Despawned(NetworkRunner runner, bool hasState)
+    //{
+    //    base.Despawned(runner, hasState);
+    //}
+
     private void SendData()
     {
         print("DataBase");
@@ -162,6 +171,7 @@ public class AnswersManager : NetworkBehaviour
         }
         else
         {
+
             confirmButton.onClick.AddListener(SaveAnswer);
             if (answersList.Count < 0) retryButton.gameObject.SetActive(false);
         }
