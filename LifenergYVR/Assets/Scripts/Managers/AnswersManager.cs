@@ -32,6 +32,8 @@ public class AnswersManager : NetworkBehaviour
     [SerializeField] private Button startButton;
     [SerializeField] private Button answerButton;
     [SerializeField] private Button confirmButton;
+    [SerializeField] private Button fillJustifyButton;
+
     [SerializeField] private Button retryButton;
     [SerializeField] private Button displayAnswersButton;
     [SerializeField] private Button concluirButton;
@@ -97,7 +99,9 @@ public class AnswersManager : NetworkBehaviour
         retryButton.onClick.AddListener(RetryAnswer);
         hierarchizyButton.onClick.AddListener(SetupHierarchyFunctions);
         concluirButton.onClick.AddListener(SendData);
+
         confirmButton.onClick.AddListener(SaveAnswer);
+        fillJustifyButton.onClick.AddListener(FillJustifyText);
 
         VoiceExperienceHandler.OnCheckVoiceOutput += CheckVoiceOutput;
         VoiceExperienceHandler.OnVoiceOutputError += VoiceOutputError;
@@ -127,7 +131,7 @@ public class AnswersManager : NetworkBehaviour
 
         startButton.gameObject.SetActive(false);
         confirmButton.gameObject.SetActive(false);
-
+        fillJustifyButton.gameObject.SetActive(false);
         answerButton.gameObject.SetActive(true);
     }
 
@@ -156,23 +160,20 @@ public class AnswersManager : NetworkBehaviour
 
         startButton.gameObject.SetActive(false);
         answerButton.gameObject.SetActive(false);
-
-      //  confirmButton.onClick.RemoveAllListeners();
-
-        confirmButton.gameObject.SetActive(true);
+        fillJustifyButton.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(true);
 
         print("Justifying: " + Justifying);
 
         if (Justifying)
         {
-            confirmButton.onClick.AddListener(FillJustifyText);
+            fillJustifyButton.gameObject.SetActive(true);
             // displayAnswersButton.gameObject.SetActive(true);
         }
         else
         {
 
-            confirmButton.onClick.AddListener(SaveAnswer);
+            confirmButton.gameObject.SetActive(true);
             if (answersList.Count < 0) retryButton.gameObject.SetActive(false);
         }
     }
