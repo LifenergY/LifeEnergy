@@ -17,7 +17,11 @@ public class NameSync : NetworkBehaviour, IPlayerJoined
 
     private void PlayerReady(ExperienceMode mode) => SendRPC();
 
-    public void PlayerJoined(PlayerRef player) => SendRPC();
+    public void PlayerJoined(PlayerRef player)
+    {
+        if (player == Runner.LocalPlayer) return;
+        SendRPC();
+    }
 
     private void SendRPC()
     {
@@ -32,4 +36,3 @@ public class NameSync : NetworkBehaviour, IPlayerJoined
         modeText.text = mode;
     }
 }
-

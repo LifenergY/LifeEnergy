@@ -29,7 +29,6 @@ public class ExperienceModeManager : NetworkBehaviour, IPlayerJoined
             print(experienceModeChannel.GetSelectedExperienceMode().ToString());
         }
 
-        print("Is Patient : "+IsPlayerPatient);
         OnExperienceModeSelected?.Invoke(experienceModeChannel.GetSelectedExperienceMode());
     }
 }

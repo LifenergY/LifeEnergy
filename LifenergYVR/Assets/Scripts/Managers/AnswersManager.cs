@@ -5,6 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using static UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation.XRDeviceSimulator;
 /// <summary>
 /// wrong answer index timing reset
 /// </summary>
@@ -13,6 +14,7 @@ public class AnswersManager : MonoBehaviour
     [SerializeField] private DatabaseManager databaseManager;
     [SerializeField] private GameObject AnswerUI;
     [SerializeField] private GameObject finalUI;
+    [SerializeField] private GameObject spawnManagerUI;
 
     [Header("Texts")]
     [SerializeField] private TMP_Text topText;
