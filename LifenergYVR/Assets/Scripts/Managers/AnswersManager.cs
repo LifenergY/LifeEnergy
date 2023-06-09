@@ -133,7 +133,7 @@ public class AnswersManager : NetworkBehaviour
         confirmButton.gameObject.SetActive(false);
         retryButton.gameObject.SetActive(false);
 
-        OnStartVoiceExperience?.Invoke();
+        if (Object.HasStateAuthority) OnStartVoiceExperience?.Invoke();
     }
 
     private void CheckVoiceOutput(string voiceOutput)
