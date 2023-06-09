@@ -26,7 +26,6 @@ public class AnswersManager : NetworkBehaviour
     public string NetworkedSubText { get; set; }
 
     private static void OnTopTextChanged(Changed<AnswersManager> changed) => changed.Behaviour.topText.text = changed.Behaviour.NetworkedTopText;
-
     private static void OnSubTextChanged(Changed<AnswersManager> changed) => changed.Behaviour.subText.text = changed.Behaviour.NetworkedSubText;
 
     [Header("Buttons")]
@@ -164,6 +163,7 @@ public class AnswersManager : NetworkBehaviour
         else
         {
             confirmButton.onClick.AddListener(SaveAnswer);
+            print(answersList.Count + "   " + currentAnswerIndex);
             if (answersList.Count < 0) retryButton.gameObject.SetActive(false);
         }
     }
@@ -246,7 +246,7 @@ public class AnswersManager : NetworkBehaviour
             if (Object.HasStateAuthority) NetworkedTopText = "";
             if (Object.HasStateAuthority) NetworkedSubText = "";
 
-            currentAnswerIndex = 0;
+            if (Object.HasStateAuthority) currentAnswerIndex = 0;
             //      uiSpawnManager.SetActive(true);
             JustifyEntry();
             //   SetupHierarchyFunctions();
@@ -263,7 +263,7 @@ public class AnswersManager : NetworkBehaviour
         currentAnswer.justifyText = topText.text;
 
         // incrementa o índice para exibir a próxima resposta na próxima interação
-        currentAnswerIndex++;
+        if (Object.HasStateAuthority) currentAnswerIndex++;
 
         // exibe o answerText da próxima resposta (ou encerra o jogo)
         DisplayAnswers();
