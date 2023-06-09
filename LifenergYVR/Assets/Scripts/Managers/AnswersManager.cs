@@ -11,6 +11,8 @@ using System.Collections.Generic;
 public class AnswersManager : MonoBehaviour
 {
     [SerializeField] private DatabaseManager databaseManager;
+    [SerializeField] private GameObject AnswerUI;
+    [SerializeField] private GameObject finalUI;
 
     [Header("Texts")]
     [SerializeField] private TMP_Text topText;
@@ -89,8 +91,11 @@ public class AnswersManager : MonoBehaviour
     {
         print("DataBase");
         databaseManager.CreateUser();
-        // DG Close Computer Screen
+        DOVirtual.DelayedCall(1, ActivateLastUI);
+        AnswerUI.GetComponent<AnswersPanelAnimations>().DisableUIAnimation();
     }
+
+    private void ActivateLastUI() => finalUI.SetActive(true);
 
     private void SettingAnswers()
     {

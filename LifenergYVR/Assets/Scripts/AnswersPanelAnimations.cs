@@ -1,6 +1,5 @@
 using UnityEngine;
 using DG.Tweening;
-using Fusion;
 
 public class AnswersPanelAnimations : MonoBehaviour
 {
@@ -20,6 +19,13 @@ public class AnswersPanelAnimations : MonoBehaviour
 
         transform.localScale = Vector3.zero;
         transform.position = startingPosition.position;
+    }
+
+    public void DisableUIAnimation()
+    {
+        transform.DOScale(Vector3.zero, speedScaleAnimation).SetEase(scaleEase);
+        transform.DOMove(startingPosition.position, speedMoveAnimation).SetEase(moveEase);
+        gameObject.SetActive(false);
     }
 
     private void OnDisable()
