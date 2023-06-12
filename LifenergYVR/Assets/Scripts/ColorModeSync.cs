@@ -11,6 +11,8 @@ public class ColorModeSync : NetworkBehaviour
 
     private void SetModeColor(ExperienceMode mode)
     {
+        if (!Object.HasStateAuthority) return;
+
         if (mode == ExperienceMode.Patient) ModeColor = Color.blue;
         else if (mode == ExperienceMode.Psychologist) ModeColor = Color.red;
     }

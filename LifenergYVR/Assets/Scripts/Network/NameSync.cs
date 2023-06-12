@@ -27,11 +27,10 @@ public class NameSync : NetworkBehaviour, IPlayerJoined
 
     private void UpdateNameAndMode()
     {
-        if (Object.HasStateAuthority)
-        {
+        if (!Object.HasStateAuthority) return;
+
             NetworkedName = PlayerPrefsManager.GetPlayerName();
             NetworkedMode = experienceModeChannel.GetSelectedExperienceMode().ToString();
-        }
     }
 
     private static void OnNameChanged(Changed<NameSync> changed) => changed.Behaviour.nameText.text = changed.Behaviour.NetworkedName;
