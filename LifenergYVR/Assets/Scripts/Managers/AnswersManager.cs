@@ -17,10 +17,10 @@ public class AnswersManager : NetworkBehaviour
     [SerializeField] private TMP_Text topText;
     [SerializeField] private TMP_Text subText;
 
-    [Networked(OnChanged = nameof(OnTopTextChanged))]
+    [Networked(OnChanged = nameof(OnTopTextChanged)), Capacity(200)]
     public string NetworkedTopText { get; set; }
 
-    [Networked(OnChanged = nameof(OnSubTextChanged))]
+    [Networked(OnChanged = nameof(OnSubTextChanged)), Capacity(200)]
     public string NetworkedSubText { get; set; }
 
     private static void OnTopTextChanged(Changed<AnswersManager> changed) => changed.Behaviour.topText.text = changed.Behaviour.NetworkedTopText;
@@ -74,11 +74,11 @@ public class AnswersManager : NetworkBehaviour
         if (!Object.HasStateAuthority) return;
 
         loadingTextAnimation = DOTween.Sequence();
-        loadingTextAnimation.AppendCallback(() => subText.text = "Listening.");
+        loadingTextAnimation.AppendCallback(() => NetworkedSubText = "Listening.");
         loadingTextAnimation.AppendInterval(period);
-        loadingTextAnimation.AppendCallback(() => subText.text = " Listening..");
+        loadingTextAnimation.AppendCallback(() => NetworkedSubText = " Listening..");
         loadingTextAnimation.AppendInterval(period);
-        loadingTextAnimation.AppendCallback(() => subText.text = "  Listening...");
+        loadingTextAnimation.AppendCallback(() => NetworkedSubText = "  Listening...");
         loadingTextAnimation.AppendInterval(period);
         loadingTextAnimation.SetLoops(-1, LoopType.Restart);
     }
@@ -114,11 +114,11 @@ public class AnswersManager : NetworkBehaviour
     {
         print("DataBase");
         if (Object.HasStateAuthority) databaseManager.CreateUser();
-     //   DOVirtual.DelayedCall(1, ActivateLastUI);
+        //   DOVirtual.DelayedCall(1, ActivateLastUI);
         AnswerUI.GetComponent<AnswersPanelAnimations>().DisableUIAnimation();
     }
 
-   // private void ActivateLastUI() => finalUI.SetActive(true);
+    // private void ActivateLastUI() => finalUI.SetActive(true);
 
     private void SettingAnswers()
     {
@@ -153,8 +153,8 @@ public class AnswersManager : NetworkBehaviour
         print("CheckVoiceOutput");
         loadingTextAnimation.Kill();
 
-        topText.text = isWhatYouMeantText;
-        subText.text = voiceOutput;
+        NetworkedTopText = isWhatYouMeantText;
+        NetworkedSubText = voiceOutput;
 
         startButton.gameObject.SetActive(false);
         answerButton.gameObject.SetActive(false);
@@ -229,12 +229,13 @@ public class AnswersManager : NetworkBehaviour
         if (currentAnswerIndex < answersList.Count)
         {
             Answer currentAnswer = answersList[currentAnswerIndex];
-            topText.text = currentAnswer.answerText;
+            NetworkedTopText = currentAnswer.answerText;
+            print("                            " + currentAnswer.answerText);
             answerButton.gameObject.SetActive(true);
         }
         else
         {
-            topText.text = "Muito bem! Você conseguiu!";
+            NetworkedTopText = "Muito bem! Você conseguiu!";
             hierarchizyButton.gameObject.SetActive(true);
         }
     }
@@ -243,11 +244,12 @@ public class AnswersManager : NetworkBehaviour
     {
         print("SaveAnswer  AnswerListCount: " + answersList.Count);
         retryButton.gameObject.SetActive(false);
+        if (Object.HasStateAuthority) NetworkedTopText = "";
 
         if (answersList.Count != 3)
         {
             Answer newAnswer = ScriptableObject.CreateInstance<Answer>();
-            newAnswer.answerText = subText.text;
+            newAnswer.answerText = NetworkedTopText;
             answersList.Add(newAnswer);
             SettingAnswers();
         }
@@ -255,22 +257,20 @@ public class AnswersManager : NetworkBehaviour
         if (answersList.Count == 3)
         {
             answerButton.gameObject.SetActive(false);
-            if (Object.HasStateAuthority)
-            {
-                NetworkedTopText = "";
-                NetworkedSubText = "";
 
-            }
+            if (Object.HasStateAuthority) NetworkedSubText = "";
+
             currentAnswerIndex = 0;
-            //      uiSpawnManager.SetActive(true);
+
             JustifyEntry();
-            //   SetupHierarchyFunctions();
         }
     }
 
     public void FillJustifyText()
     {
         print("FillJustifyText");
+        //  if (Object.HasStateAuthority) NetworkedTopText = "";
+
         // obtém a resposta correspondente ao índice atual
         Answer currentAnswer = answersList[currentAnswerIndex];
 
