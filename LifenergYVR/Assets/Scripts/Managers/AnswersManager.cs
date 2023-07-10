@@ -249,21 +249,20 @@ public class AnswersManager : NetworkBehaviour
         if (answersList.Count != 3)
         {
             Answer newAnswer = ScriptableObject.CreateInstance<Answer>();
-            newAnswer.answerText = NetworkedTopText;
+            newAnswer.answerText = subText.text;
             answersList.Add(newAnswer);
             SettingAnswers();
         }
 
-        if (answersList.Count == 3)
-        {
-            answerButton.gameObject.SetActive(false);
+        if (answersList.Count != 3) return;
 
-            if (Object.HasStateAuthority) NetworkedSubText = "";
+        answerButton.gameObject.SetActive(false);
 
-            currentAnswerIndex = 0;
+        if (Object.HasStateAuthority) NetworkedSubText = "";
 
-            JustifyEntry();
-        }
+        currentAnswerIndex = 0;
+
+        JustifyEntry();
     }
 
     public void FillJustifyText()
@@ -275,7 +274,7 @@ public class AnswersManager : NetworkBehaviour
         Answer currentAnswer = answersList[currentAnswerIndex];
 
         // atualiza a propriedade JustifyText com o valor do campo de entrada de texto
-        currentAnswer.justifyText = topText.text;
+        currentAnswer.justifyText = subText.text;
 
         // incrementa o índice para exibir a próxima resposta na próxima interação
         currentAnswerIndex++;

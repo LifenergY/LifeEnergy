@@ -2970,7 +2970,7 @@ GameObject:
   - component: {fileID: 3628520589350634198}
   - component: {fileID: 6698769683139631144}
   - component: {fileID: 6781851757902081219}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Network Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
