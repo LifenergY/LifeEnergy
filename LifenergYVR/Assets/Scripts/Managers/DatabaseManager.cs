@@ -26,7 +26,7 @@ public class DatabaseManager : MonoBehaviour
             //Fix and get the name of the psychologist
             //TODO
             var tempName = GetTMPTextFromNetworkPlayers();
-            string psychologistName="No Psychologist Present";
+            string psychologistName="No Psychologist Present ";
             if (tempName != null) psychologistName = tempName;
 
 
@@ -49,7 +49,7 @@ public class DatabaseManager : MonoBehaviour
                 string justify = nAnswerManager.answersList[i].justifyText.Replace("Jogador: ", "");
 
                 string formattedAnswer =
-                    $"Resposta:{answer}{Environment.NewLine} \n Prioridade: {priority}{Environment.NewLine} \n Justificativa: {justify}{Environment.NewLine}{Environment.NewLine}";
+                    $"Resposta:{answer}{Environment.NewLine} Prioridade: {priority}{Environment.NewLine}  Justificativa: {justify}{Environment.NewLine}{Environment.NewLine}";
 
                 dict.Add(i.ToString(), formattedAnswer);
             }
@@ -91,7 +91,7 @@ public class DatabaseManager : MonoBehaviour
                     if (namePanel != null)
                     {
                         // Look for 'tmp' child and get TMP_Text component
-                        TMP_Text tmpText = namePanel.GetChild(0).GetComponent<TMP_Text>();
+                        TMP_Text tmpText = namePanel.GetComponent<TMP_Text>();
                         if (tmpText != null)
                         {
                             // Return the text of the TMP_Text component
