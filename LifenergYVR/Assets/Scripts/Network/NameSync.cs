@@ -29,11 +29,17 @@ public class NameSync : NetworkBehaviour, IPlayerJoined
     {
         if (!Object.HasStateAuthority) return;
 
-            NetworkedName = PlayerPrefsManager.GetPlayerName();
             NetworkedMode = experienceModeChannel.GetSelectedExperienceMode().ToString();
+            NetworkedName = PlayerPrefsManager.GetPlayerName();
     }
 
-    private static void OnNameChanged(Changed<NameSync> changed) => changed.Behaviour.nameText.text = changed.Behaviour.NetworkedName;
+    private static void OnNameChanged(Changed<NameSync> changed)
+    {
+        changed.Behaviour.nameText.text = changed.Behaviour.NetworkedName;
+
+        if (changed.Behaviour.NetworkedMode == "Psychologist")
+            FindAnyObjectByType<DatabaseManager>().SetPsychologistName(changed.Behaviour.NetworkedName);
+    }
 
     private static void OnModeChanged(Changed<NameSync> changed) => changed.Behaviour.modeText.text = changed.Behaviour.NetworkedMode;
 }
